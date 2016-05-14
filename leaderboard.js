@@ -82,7 +82,7 @@ Meteor.methods({
         check(selectedPlayer, String);
         check(scoreValue, Number);
         var currentUserId = Meteor.userId();
-        if(currentUserId){
+        if(currentUserId && scoreValue <=50){
             PlayersList.update({_id:selectedPlayer, createdBy: currentUserId}, 
                 {$inc :{score: scoreValue}});
         }

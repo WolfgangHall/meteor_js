@@ -1,11 +1,30 @@
 <head>
     <title>Leaderboard</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 <body>
-    <h1>Leaderboard</h1>
-    <p>{{> loginButtons}}</p>
 
-    {{> leaderboard}}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">LeaderBoard</a>
+          </div>
+          <div id="navbar">
+            <ul class="nav navbar-nav">
+              <li class="loginButton">{{> loginButtons}}</li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                {{> leaderboard}}
+            </div>
+        </div>
+    </div>
+   
 </body>
 
 <template name="leaderboard">
@@ -19,11 +38,10 @@
     <li>Selected Player: {{selectedPlayer.name}}</li>
     <ul>
         <li>
-            <button class="increment">Give 5 points</button>
-            <button class="decrement">Remove 5 points</button>
-            <button class="remove">Remove Player</button>
-        </li>    
-    
+            <button class="increment btn btn-success">Give 5 points</button>
+            <button class="decrement btn btn-info">Remove 5 points</button>
+            <button class="remove btn btn-danger">Remove Player</button>
+        </li>
     </ul>
     {{/if}}
 {{else}}

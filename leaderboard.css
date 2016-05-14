@@ -1,3 +1,7 @@
 .selected {
     background-color: yellow;
 }
+
+.loginButton {
+    margin-left: 50px;
+}
