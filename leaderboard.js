@@ -2,6 +2,9 @@ PlayersList = new Mongo.Collection('players');
 UserAccounts = new Mongo.Collection('usersLeaderboard');
 
 if(Meteor.isClient){
+
+    Meteor.subscribe('thePlayers');
+
     Template.leaderboard.helpers({
         'player': function () {
             var currentUserId = Meteor.userId();
@@ -44,17 +47,23 @@ if(Meteor.isClient){
             event.preventDefault();
             var playerNameVar = event.target.playerName.value;
             var currentUserId = Meteor.userId();
-            PlayersList.insert({
-                name: playerNameVar,
-                score: 0,
-                createdBy: currentUserId
-            });
+            if (playerNameVar != ''){
+                PlayersList.insert({
+                    name: playerNameVar,
+                    score: 0,
+                    createdBy: currentUserId
+                });
+            }
+
             event.target.playerName.value = "";
         }
     });
 }
 
 if(Meteor.isServer){
-
+    Meteor.publish('thePlayers', function(){
+        var currentUserId = this.userId;
+        return PlayersList.find({createdBy: currentUserId});
+    });
 }
 
